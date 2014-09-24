@@ -7,7 +7,11 @@ Songs are currently searched through [SoundCloud](https://soundcloud.com). WaveR
 [three.js](http://threejs.org).
 
 ## demo
+
 Enough talk already, [play it yourself](http://frenkie.github.io/waverider/)!
+
+![screenshot](http://frenkie.github.io/waverider/waverider-thumb.jpg)
+
 
 ## game
 The game was made during a music hackday event and in it's current form it's not at all difficult to play :)
