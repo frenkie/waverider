@@ -1,0 +1,13 @@
+<div data-service-id="{{service.id}}">
+    <h2>{{service.title}}</h2>
+    {{^results}}
+        <p>
+            No results :(
+        </p>
+    {{/results}}
+    <ul class="search-results-list">
+        {{#results}}
+        <li data-id="{{id}}" class="search-results-item">{{title}} <small>({{duration}})</small></li>
+        {{/results}}
+    </ul>
+</div>

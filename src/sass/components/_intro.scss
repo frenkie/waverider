@@ -1,0 +1,18 @@
+#intro{
+    position: relative;
+    margin: 0 auto;
+    width: 80%;
+    padding-top: 95px;
+    text-align: center;
+}
+
+.intro-header {
+    margin: 0;
+
+    font-size: 140px;
+    padding-bottom: 40px;
+}
+
+.btn-test {
+    @extend %button;
+}

@@ -1,0 +1,11 @@
+{
+    "port" : 8081,
+    "services" : {
+        "soundcloud" : {
+            "module" : "SoundCloudService",
+            "config" : {
+                "apiKey" : "ENTER YOUR API KEY HERE"
+            }
+        }
+    }
+}

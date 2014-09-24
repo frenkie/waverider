@@ -1,0 +1,13 @@
+{
+  "name": "WaveRider",
+  "version": "v0.1.0",
+  "dependencies": {
+    "backbone-amd": "1.0.x",
+    "handlebars": "1.0.x",
+    "jquery": "1.9.x",
+    "requirejs": "2.1.x",
+    "swfobject": "*",
+    "threejs": "r68",
+    "underscore-amd": "1.4.3"
+  }
+}

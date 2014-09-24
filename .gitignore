@@ -1,0 +1,13 @@
+.DS_Store
+.idea/
+.sass-cache/
+
+npm-debug.log
+
+node_modules/
+bower_components/
+
+app/config.json
+app/css/*.map
+app/css/*.css
+app/vendor/

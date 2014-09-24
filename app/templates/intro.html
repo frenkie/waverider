@@ -1,0 +1,26 @@
+<div id="intro">
+    <h1 class="intro-header">Waverider</h1>
+
+    <p>
+        The game that let's you ride your own music.
+    </p>
+
+    {{#capable}}
+        <p>Searching the top 10 results of: {{#services}}{{title}}/ {{/services}}</p>
+
+        <form class="search-form">
+            <input type="text" name="query" class="search-query">
+            <input type="submit" value="search" class="search-submit">
+        </form>
+
+        <div class="search-results-loading"></div>
+
+        <div class="search-results"></div>
+    {{/capable}}
+
+    {{^capable}}
+    <p>
+        Unfortunately, you have an unsupported browser. Your browser needs <a href="http://caniuse.com/#search=webgl">WebGL</a> support.
+    </p>
+    {{/capable}}
+</div>

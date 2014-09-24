@@ -1,0 +1,37 @@
+.search-submit {
+    @extend %button;
+}
+
+.search-query {
+    padding: 4px 8px;
+    border: 1px solid $textcolor;
+}
+
+.search-results-loading {
+
+    display: none;
+    width: 15px;
+    height: 15px;
+
+    margin: 0 auto;
+
+    background: url('../img/loading.gif') no-repeat;
+
+    &.loading {
+        display: block;
+    }
+}
+
+.search-results-list {
+    list-style: none;
+}
+
+.search-results-item {
+    padding: 5px 10px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: $textcolor;
+        color: white;
+    }
+}
