@@ -41,4 +41,4 @@ If you don't want to use SoundCloud as a sound provider that's fine. You can cre
 as long as it exposes a certain API. You should be able to play a sound and provide the game with
 waveform data per second.
 
-I will document the way to this as soon as possible. 
+I will document the way to do this as soon as possible. 
