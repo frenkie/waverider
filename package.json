@@ -1,7 +1,11 @@
 {
   "name": "WaveRider",
-  "version": "v0.1.0",
+  "version": "0.1.0",
   "description": "A 3D browser game that let's you ride music wave forms",
+  "respository" : {
+      "type" : "git",
+      "url" : "http://github.com/frenkie/waverider.git"
+  },
   "devDependencies": {
       "del": "^0.1.1",
       "express": "^4.8.5",
