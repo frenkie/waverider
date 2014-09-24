@@ -24,7 +24,7 @@ If you want to tweak the game or provide different sound providers instead of ju
 The SoundCloud service needs a valid SoundCloud API key, which you can create by 
 [registering a SoundCloud app](http://soundcloud.com/you/apps).
 
-You then make a copy of `app/config.example.json`, rename it to 'app/config.json' and enter your API key.
+You then make a copy of `app/config.example.json`, rename it to `app/config.json` and enter your API key.
 
 To build the game and run it, you need [NPM](https://www.npmjs.org), [Bower](http://www.bower.io) and 
 [Gulp](http://gulpjs.com).
