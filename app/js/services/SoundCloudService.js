@@ -34,7 +34,7 @@ define(
 
             _loadWaveFormData : function ( waveFormUrl ) {
 
-                return $.getJSON( 'http://waveformjs.org/w?callback=?&url='+
+                return $.getJSON( 'http://www.waveformjs.org/w?callback=?&url='+
                     waveFormUrl
                 );
             },

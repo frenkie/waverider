@@ -36,7 +36,6 @@ gulp.task('vendor', ['clean'], function ( cb ) {
     var vendorSrc = __dirname +'/bower_components/';
 
     gulp.src([
-        __dirname + '/waverider_components/soundcloud/player-api-amd.js',
         vendorSrc +'backbone-amd/backbone.js',
         vendorSrc +'handlebars/handlebars.js',
         vendorSrc +'jquery/jquery.min.js',
@@ -56,10 +55,10 @@ gulp.task('watch', function () {
     plugins.livereload.listen();
 
     // Watch for changes to our SASS
-    gulp.watch( basePath + 'css/sass/**/*.scss', ['sass'] );
+    gulp.watch( 'src/sass/**/*.scss', ['sass'] );
 
 
-    // Watch for changes CSS or JS changes in our build
+    // Watch for CSS or JS changes in our build
     gulp.watch( [ basePath + 'css/waverider.css', basePath + 'js/**/*', basePath + 'templates/*' ] )
         .on('change', helpers.notifyLivereload.bind( this, basePath, plugins.livereload ) );
 });

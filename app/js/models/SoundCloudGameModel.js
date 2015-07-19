@@ -6,60 +6,39 @@ define(
         'jquery'
     ],
 
-    function ( soundcloud, swfobject, Backbone, $ ) {
+    function ( SC, swfobject, Backbone, $ ) {
 
         var SoundCloudGameModel = Backbone.Model.extend({
 
             _bindAudioListeners : function () {
-                soundcloud.addEventListener( 'onPlayerReady', this._handleMediaReadyProxy );
-                soundcloud.addEventListener( 'onMediaEnd', this._handleMediaEndProxy );
-                soundcloud.addEventListener( 'onMediaStart', this._handleMediaStartProxy );
 
-                this.timer = setInterval( this._handleTimeUpdateProxy, 10 );
+                var player = this.get('player');
+
+                player.bind( SC.Widget.Events.READY, this._handleMediaReadyProxy );
+                player.bind( SC.Widget.Events.FINISH, this._handleMediaEndProxy );
+                player.bind( SC.Widget.Events.PLAY, this._handleMediaStartProxy );
+                player.bind( SC.Widget.Events.PLAY_PROGRESS, this._handleTimeUpdateProxy );
             },
 
             _createAudio : function () {
 
                 var playerId = this.get('audioContainer');
-                var flashvars = {
-                    enable_api: true,
-                    object_id: playerId,
-                    url: this.get('data').permalink_url
-                };
-                var params = {
-                    allowscriptaccess: 'always'
-                };
-                var attributes = {
-                    id: playerId,
-                    name: playerId
-                };
+
+                $( '#'+ playerId ).html(''.concat(
+                        '<iframe id="sc-widget" src="https://w.soundcloud.com/player/?url='+
+                        this.get('data').permalink_url,
+                        '" width=100%" height="100%" scrolling="no" frameborder="no"></iframe>'
+                ));
+
+                this.set( 'player', SC.Widget( 'sc-widget' ) );
 
                 this._bindAudioListeners();
-
-                swfobject.embedSWF(
-                    'http://player.soundcloud.com/player.swf',
-                    playerId, '81', '40', '9.0.0','expressInstall.swf',
-                    flashvars,
-                    params,
-                    attributes);
             },
 
             defaults : {
                 'ready' : false,
                 'data' : {},
                 'time' : 0
-            },
-
-            _getCurrentTime : function () {
-                if ( this.get('ready') ) {
-                    try {
-                        return this.get('player').api_getTrackPosition();
-                    } catch ( e ) {
-                        return 0;
-                    }
-                } else {
-                    return 0;
-                }
             },
 
             getWaveFormUrl : function () {
@@ -71,16 +50,16 @@ define(
             },
 
             _handleMediaReady : function () {
-                this.set( 'player', soundcloud.getPlayer( this.get('audioContainer') ) );
-                this.get('player').api_play();
+
+                this.get('player').play();
             },
 
             _handleMediaStart : function () {
                 this.set( 'ready', true );
             },
 
-            _handleTimeUpdate : function () {
-                this.set( 'time', this._getCurrentTime() );
+            _handleTimeUpdate : function ( playProgress ) {
+                this.set( 'time', playProgress.currentPosition / 1000 );
             },
 
             initialize : function () {
@@ -117,7 +96,7 @@ define(
                 if ( ! this.get('ready') ) {
                     this._createAudio();
                 } else {
-                    this.get('player').api_play();
+                    this.get('player').play();
                 }
             },
 
@@ -143,7 +122,7 @@ define(
                     this.set( 'ready', false );
                     this._unbindAudioListeners();
 
-                    this.get('player').api_stop();
+                    this.get('player').pause();
 
                     this.set( 'time', 0, {silent: true} );
                     this.unset('player');
@@ -151,12 +130,14 @@ define(
             },
 
             _unbindAudioListeners : function () {
-                soundcloud.removeEventListener( 'onPlayerReady', this._handleMediaReadyProxy );
-                soundcloud.removeEventListener( 'onMediaEnd', this._handleMediaEndProxy );
-                soundcloud.removeEventListener( 'onMediaEnd', this._handleMediaEndProxy );
 
-                if ( this.timer ) {
-                    clearInterval( this.timer );
+                var player = this.get('player');
+
+                if ( player ) {
+                    player.unbind( SC.Widget.Events.READY, this._handleMediaReadyProxy );
+                    player.unbind( SC.Widget.Events.FINISH, this._handleMediaEndProxy );
+                    player.unbind( SC.Widget.Events.PLAY, this._handleMediaEndProxy );
+                    player.unbind( SC.Widget.Events.PLAY_PROGRESS, this._handleTimeUpdateProxy );
                 }
             }
         });

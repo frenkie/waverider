@@ -1,6 +1,6 @@
 {
   "name": "WaveRider",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A 3D browser game that let's you ride music wave forms",
   "repository" : {
       "type" : "git",

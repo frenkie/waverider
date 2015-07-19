@@ -4,7 +4,7 @@ requirejs.config({
         'backbone' : 'vendor/backbone',
         'handlebars' : 'vendor/handlebars',
         'jquery' : 'vendor/jquery.min',
-        'soundcloud' : 'vendor/player-api-amd',
+        'soundcloud' : 'https://w.soundcloud.com/player/api',
         'swfobject' : 'vendor/swfobject',
         'three' : 'vendor/three.min',
         'underscore' : 'vendor/underscore'
@@ -18,6 +18,9 @@ requirejs.config({
         },
         'three' : {
             exports : 'THREE'
+        },
+        'soundcloud' : {
+            exports : 'SC'
         }
     }
 });

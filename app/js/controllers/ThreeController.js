@@ -387,19 +387,29 @@ define(
                 if( seconds !== this.secondsDrawn ){
 
                     var add = 1,
-                        offset = seconds + 2;
+                        offset = seconds + 2,
+                        color = 0x202020;
 
                     this.secondsDrawn = seconds;
-                    if(seconds === 0){
+                    if ( seconds === 0 ){
                         // draw 3 seconds for the start screen
                         add = 3;
                         offset = 0;
+                        color = 0x0975b3;
+
+                    } else {
+
+                        this.waves[ seconds - 1 ].material.setValues({
+                            color : 0x202020
+                        });
+
+                        this.waves[ seconds ].material.setValues({
+                            color : 0x0975b3
+                        });
                     }
 
                     for ( var i = offset; i < offset+add; i++ ) {
                         if( i < this.waveFormData.length ){
-
-                            var color = 0x202020;
 
                             mesh = this.waves[ i ] = new THREE.Mesh( new THREE.BoxGeometry( 1, 1, 1 ), new THREE.MeshLambertMaterial( { color: color } ) );
 
